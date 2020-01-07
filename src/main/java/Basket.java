@@ -8,6 +8,8 @@
  *
  * @author Dan
  */
+
+//Class which is used to create objects to put into the customers basket
 public class Basket 
 {
     String foodName;
