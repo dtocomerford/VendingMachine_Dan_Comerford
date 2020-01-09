@@ -3,6 +3,11 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -42,47 +47,63 @@ public class VendingMachine extends javax.swing.JFrame {
      */
     public VendingMachine() {
         initComponents();
+        //An array of items to popultate the combo box with
         String[] menu = {"Chocolate", "Water", "Drink", "Snack", "Sweet"};
         
         
-        
+        //creating an object of the Bsket class
+        //Naming the object and giving it values
         _chocolate.foodName = "Chocolate";
         _chocolate.price = 2;
         _chocolate.quantity = 20;
         _chocolate.code = 01;
+        
+        //Adding the object to the stock arraylist
         stock.add(_chocolate);
         
-        
+        //creating an object of the Bsket class
+        //Naming the object and giving it values
         _water.foodName = "Water";
         _water.price = 0.5f;
         _water.quantity = 20;
         _water.code = 02;
+        
+        //Adding the object to the stock arraylist
         stock.add(_water);
         
-        
+        //creating an object of the Bsket class
+        //Naming the object and giving it values
         _drink.foodName = "Drink";
         _drink.price = 1;
         _drink.quantity = 20;
         _drink.code = 03;
+        
+        //Adding the object to the stock arraylist
         stock.add(_drink);
         
-        
+        //creating an object of the Bsket class
+        //Naming the object and giving it values
         _snack.foodName = "Snack";
         _snack.price = 2;
         _snack.quantity = 20;
         _snack.code = 04;
+        
+        //Adding the object to the stock arraylist
         stock.add(_snack);
         
-        
+        //creating an object of the Bsket class
+        //Naming the object and giving it values
         _sweet.foodName = "Chocolate";
         _sweet.price = 1;
         _sweet.quantity = 20;
         _sweet.code = 05;
+        
+        //Adding the object to the stock arraylist
         stock.add(_sweet);
         
-        
-        DefaultComboBoxModel dm = new DefaultComboBoxModel(menu);
-        ItemList.setModel(dm);
+        //Setting the combo box to have the menu array as the default list
+        DefaultComboBoxModel comboBox = new DefaultComboBoxModel(menu);
+        ItemList.setModel(comboBox);
     }
 
     /**
@@ -224,90 +245,124 @@ public class VendingMachine extends javax.swing.JFrame {
 
     private void SelectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectButtonActionPerformed
         
+        //Items string selected from the combo box is put into this variable
         String itemSelected = (ItemList.getSelectedItem().toString());
         
+        //An if statement which checks what the string is e.g. Drink and checks if theres any in stock
         if(itemSelected.equals("Chocolate") && stock.get(0).quantity > 0)
         {
+            //Reduce the stock of that item
             stock.get(0).quantity--;
+            //Create a basket object
             Basket chocolate = new Basket();
+            //Set the new objects properties  
             chocolate.foodName = "Chocolate";
             chocolate.price = 2;
             chocolate.quantity = 1;
             chocolate.code = 01;
             
+            //Add the new object to the customers cart
             cart.add(chocolate);
+            
+            //Set the Basket display text to that of the name of the product
             BasketDisplay.setText(BasketDisplay.getText() + itemSelected + "\n");
         }
         else if(itemSelected.equals("Chocolate")&&stock.get(0).quantity <= 0)
         {
+            //Display this message if the priduct is sold out
             MachineScreen.setText("Chocolate: Sold out");
         }
         
         if(itemSelected.equals("Water")&& stock.get(1).quantity > 0)
         {
+            //Reduce the stock of that item
             stock.get(1).quantity--;
+            //Create a basket object
             Basket water = new Basket();
+            //Set the new objects properties 
             water.foodName = "Water";
             water.price = 0.5f;
             water.quantity = 1;
             water.code = 02;
             
+            //Add the new object to the customers cart
             cart.add(water);
+            
+            //Set the Basket display text to that of the name of the product
             BasketDisplay.setText(BasketDisplay.getText() + itemSelected + "\n");
         }
         else if(itemSelected.equals("Water")&& stock.get(1).quantity <= 0)
         {
+            //Display this message if the priduct is sold out
             MachineScreen.setText("Water: Sold out");
         }
         
         if(itemSelected.equals("Drink")&& stock.get(2).quantity > 0)
         {
+            //Reduce the stock of that item
             stock.get(2).quantity--;
+            //Set the new objects properties 
             Basket drink = new Basket();
             drink.foodName = "Drink";
             drink.price = 1;
             drink.quantity = 1;
             drink.code = 03;
             
+            //Add the new object to the customers cart
             cart.add(drink);
+            
+            //Set the Basket display text to that of the name of the product
             BasketDisplay.setText(BasketDisplay.getText() + itemSelected + "\n");
         }
         else if(itemSelected.equals("Drink")&& stock.get(2).quantity <= 0)
         {
+            //Display this message if the priduct is sold out
             MachineScreen.setText("Drink: Sold out");
         }
         
         if(itemSelected.equals("Snack")&& stock.get(3).quantity > 0)
         {
+            //Reduce the stock of that item
             stock.get(3).quantity--;
+            //Set the new objects properties 
             Basket snack = new Basket();
             snack.foodName = "Snack";
             snack.price = 2;
             snack.quantity = 1;
             snack.code = 04;
             
+            //Add the new object to the customers cart
             cart.add(snack);
+            
+            //Set the Basket display text to that of the name of the product
             BasketDisplay.setText(BasketDisplay.getText() + itemSelected + "\n");
         }
         else if(itemSelected.equals("Snack")&& stock.get(3).quantity <= 0)
         {
+            //Display this message if the priduct is sold out
             MachineScreen.setText("Snack: Sold out");
         }
         
         if(itemSelected.equals("Sweet")&& stock.get(4).quantity > 0)
         {
+            //Reduce the stock of that item
             stock.get(4).quantity--;
+            //Set the new objects properties 
             Basket sweet = new Basket();
             sweet.foodName = "Sweet";
             sweet.price = 1;
             sweet.quantity = 1;
             sweet.code = 05;
             
+            //Add the new object to the customers cart
             cart.add(sweet);
+            
+            //Set the Basket display text to that of the name of the product
             BasketDisplay.setText(BasketDisplay.getText() + itemSelected + "\n");
         }
         else if(itemSelected.equals("Sweet")&& stock.get(4).quantity <= 0)
         {
+            //Display this message if the priduct is sold out
             MachineScreen.setText("Sweet: Sold out");
         }
         
@@ -378,41 +433,88 @@ public class VendingMachine extends javax.swing.JFrame {
         PriceScreen.setText("£" + Float.toString(cost));
     }
     
+    //Function to print out a receipt and save to a text file
     public void Printer()
     {        
+        //For each loop which prints all items in cart to a text pane
         for(Basket i : cart)
         {
             ReceiptPrinter.setText(ReceiptPrinter.getText() + i.foodName + " £" + i.price+ "\n");
             
         }    
+        
+        //Printing the total cost, cash used, and customer change
         ReceiptPrinter.setText(ReceiptPrinter.getText() + "---------------------\n");
         ReceiptPrinter.setText(ReceiptPrinter.getText() + "Total cost: £" + cost + "\n");
         ReceiptPrinter.setText(ReceiptPrinter.getText() + "Cash inserted: £" + amountOfCashInserted + "\n"); 
         ReceiptPrinter.setText(ReceiptPrinter.getText() + "Customer change: £" + change);
-        ReceiptPrinter.setText(ReceiptPrinter.getText() + "Total items bought" + cart.size());
+        //ReceiptPrinter.setText(ReceiptPrinter.getText() + "Total items bought" + cart.size());
         
-        cart.clear();
+        
             
         ReceiptPrinter.setText(ReceiptPrinter.getText() + "\n \nOrder complete, basket emptied");
+        
+        //Creating an object of the PrintWriter class
+        PrintWriter writer = null;
+        try
+        {
+            //Creating an object of the FileWriter class, passing in a name for the file to be called, and passing in false so it overwrites the file and doesn't append it 
+            FileWriter fileWriter = new FileWriter("VendingMachineReceipt.txt", false);
+            writer = new PrintWriter(fileWriter);
+            
+        }catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            
+        }
+        
+        //For each loop which prints every item in the cart to the text file
+        for(Basket i : cart)
+        {
+            writer.println(i.foodName + " £" + i.price + " Quantity: " + i.quantity);
+        }
+        
+        //prints the total cost, cash inserted and customer change to the text file
+        writer.println("Total cost of basket: £" + cost);
+        writer.println("Cash inserted: " + amountOfCashInserted);
+        writer.println("Customer change: " + change);
+       
+        
+        
+        writer.close();
+        
+        //Empties the cart once transaction is complete
+        cart.clear();
     }     
     
     public void Buy()
     {
+        //Setting the amountOfCashInserted variable from the figure entered into the text field
         amountOfCashInserted = Double.parseDouble(CashInsert.getText());
         
-          
+         
+        //An if statement to decide if the customer has entered enough cash
         if(amountOfCashInserted >= cost)
         {
+            //A successful transaction
             MachineScreen.setText("Please take your drink");
+            //Calculating the change 
             change = amountOfCashInserted - cost;
+            //Printing the change
             PriceScreen.setText("Your change is: " + Double.toString(change));
             
-            //Reduce quantity
+            
             ///removeItemsFromStock();
+            //calling the printer function
             Printer();
             
         }else if(amountOfCashInserted < cost)
         {
+            //Unsucessful transaction
             MachineScreen.setText("Insufficient amount");
             refillStock();
             //cart.clear();
