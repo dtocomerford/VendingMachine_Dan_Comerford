@@ -23,8 +23,8 @@ public class VendingMachine extends javax.swing.JFrame {
     
     
     //MY VARIABLES
-    public static float[] price = {2f, 0.5f, 1f, 2f, 1f};
-    public static int[] quantity = {0, 20, 20, 20, 20};
+    //public static float[] price = {2f, 0.5f, 1f, 2f, 1f};
+    //public static int[] quantity = {0, 20, 20, 20, 20};
     
     public static double change;
     public static float cost= 0;
